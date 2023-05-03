@@ -7,6 +7,12 @@ University of California Davis Human Performance Lab
 Submitted to Sensors May 2023 as "Unsupervised gait event detection using a single wearable accelerometer and/or gyroscope: 
 A comparison of methods across running speeds, surfaces, and foot strike patterns"
 
+LICENSING
+
+Original content distributed under GNU GENERAL PUBLIC LICENSE
+For licensing of dependencies, consult original sources
+For licensing of redistributed, non-original, code (Fadillioglu, Schmidt, Bach, and Benson methods) consult original sources
+
 PURPOSE
 
 This function takes accelerometer and/or gyroscope data from either the
