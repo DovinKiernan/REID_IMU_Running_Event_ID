@@ -9,7 +9,7 @@ A comparison of methods across running speeds, surfaces, and foot strike pattern
 
 LICENSING
 
-Original content distributed under GNU GENERAL PUBLIC LICENSE
+Original content distributed under GNU GENERAL PUBLIC LICENSE v3
 For licensing of dependencies, consult original sources
 For licensing of redistributed, non-original, code (Fadillioglu, Schmidt, Bach, and Benson methods) consult original sources
 
