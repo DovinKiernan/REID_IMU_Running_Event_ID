@@ -20,6 +20,12 @@ shank or low-back/sacrum and enters it into the user's choice of one of several
 possible gait event ID methods. The function then returns timings of
 initial and terminal contact events for the left and/or right foot.
 
+UPDATES AND NEW METHODS
+
+We are happy to include any novel methods (or methods we may have missed) as part of this package
+If you would like to include your method, provide it in a function formatted similar to the original 18 methods
+We will then run the data from our 74 participants through it and provide results comparing it to the other included methods
+
 INPUTS
 
 Data 
