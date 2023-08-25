@@ -33,6 +33,8 @@ end
 Fs_Bach = 2000/14;
 a_resample = scale_time(data(:,2:4),1,size(data,1),round(size(data,1)/Fs*Fs_Bach));
 % Calculate Principal Components of acceleration
+% I believe this procedure is meant to express data in a ~consistent coordinate system
+% May have been better to skip this step and use our WCS, SCS, and TCCS conventions
 [x, a_PC] = pca(a_resample,'algorithm','eig');
 % Retain only the 1st PC
 a_PC = a_PC(:,1);
@@ -40,14 +42,18 @@ a_PC = a_PC(:,1);
 if x(2,1) < 0
     a_PC = -a_PC;
 end
-% Normalize by standard deviation
-a_PC = a_PC/std(a_PC);
-% Estimate "velocity" and "position" (integrals of 1st PC) after removing the DC-component with high pass filtering
+% Filter
 order = 2;
 Fc = 1;
 [b1, b2] = butter(order, Fc/(Fs/2), 'high');
-a_PC_int1 = filtfilt(b1, b2, cumtrapz(1/Fs, a_PC));
-a_PC_int2 = filtfilt(b1, b2, cumtrapz(1/Fs, a_PC_int1));
+a_PC = filtfilt(b1, b2, a_PC);
+% Estimate "velocity" and "position" (integrals of 1st PC)
+a_PC_int1 = cumtrapz(1/Fs, a_PC);
+a_PC_int2 = cumtrapz(1/Fs, a_PC_int1);
+% Normalize by ranges
+a_PC = a_PC/(max(a_PC)-min(a_PC));
+a_PC_int1 = a_PC_int1/(max(a_PC_int1)-min(a_PC_int1));
+a_PC_int2 = a_PC_int2/(max(a_PC_int2)-min(a_PC_int2));
 % Arrange data in proper format for Echo State Network
 input{1} = [a_PC, a_PC_int1, a_PC_int2];
 input = cellfun(@(s)[ones(size(s,1),1),s], input, 'UniformOutput', false);
