@@ -131,7 +131,7 @@ min_swing_t = 200; % minimum 200 ms swing time
 max_swing_t = 600; % maximum 600 ms swing time
 
 % Calculate sample frequency from time stamps
-Fs = mean(diff(data(:,1)))*1000;
+Fs = 1000/mean(diff(data(:,1)));
 % % % % Alternatively, UI specify your sample frequency
 % % % Fs = cell2mat(inputdlg('Enter sample frequency'));
 
